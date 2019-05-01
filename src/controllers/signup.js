@@ -16,13 +16,25 @@ const signUp = (req, res, next) => {
       }
 
       // register the new user
-      const query = `INSERT INTO users (username, password, registered) VALUES ('${username}', '${password}', NOW());`;
-      pool
-        .query(query)
-        .then(r => {
-          res.status(200).json({ message: 'Successfully created a new account' });
-        })
-        .catch(e => console.log(e.stack));
+      // first hash the password
+      bcrypt
+        .hash(password, 10, (err, hash) => {
+          if (err) {
+            res.status(500).json({
+              status: 500,
+              error: err,
+            });
+          } else {
+            const query = `INSERT INTO users (username, password, registered) VALUES ('${username}', '${hash}', NOW());`;
+            // run the query
+            pool
+              .query(query)
+              .then((r) => {
+                res.status(200).json({ message: 'Successfully created a new account' });
+              })
+              .catch(e => console.log(e.stack));
+          }
+        });
     });
 
 
