@@ -11,7 +11,7 @@ const signUp = (req, res, next) => {
     pool
       .query(`SELECT * FROM USERS where username = '${username}';`)
       .then((r) => {
-      // check if username exists before signing in
+      // check if username exists before signing up
         if (r.rows[0]) {
           return res.status(409).json({
             status: 409,
@@ -46,9 +46,6 @@ const signUp = (req, res, next) => {
       error: result.error.details.map(detail => detail.message),
     });
   }
-
-
-
 };
 
 export default signUp;

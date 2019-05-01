@@ -12,7 +12,6 @@ const signIn = (req, res, next) => {
     pool
       .query(query)
       .then((r) => {
-        console.log(r);
         // if no record of the user was found
         if (!r.rowCount) {
           return res.status(404).json({
@@ -36,8 +35,8 @@ const signIn = (req, res, next) => {
             });
           }
 
-          // comparision passes log user in
-          if(compareRes){
+          // comparision passes, log user in
+          if (compareRes) {
             return res.status(200).json({
               status: 200,
               message: 'Successfully logged in!',
@@ -53,7 +52,6 @@ const signIn = (req, res, next) => {
       error: result.error.details.map(detail => detail.message),
     });
   }
-  // res.status(200).json({ message: 'Please sign in' });
 };
 
 export default signIn;
