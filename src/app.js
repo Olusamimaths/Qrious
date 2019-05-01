@@ -1,5 +1,9 @@
 import express from 'express';
+import dotenv from 'dotenv';
 import bodyParser from 'body-parser';
+import db from './models/db';
+
+dotenv.config()
 
 // importing routes
 import indexRoute from './routes/index';
@@ -13,7 +17,7 @@ const app = express();
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
-
+// mount the routes
 app.use('/api/v1/', indexRoute);
 app.use('/api/v1/', signupRoute);
 app.use('/api/v1/', signinRoute);
@@ -33,6 +37,11 @@ app.use((error, req, res, next) => {
       message: error.message,
     },
   });
+});
+
+app.use((req, res, next) => {
+  res.locals.user = res.user;
+  next();
 });
 
 export default app;
