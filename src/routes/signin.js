@@ -1,9 +1,8 @@
 import express from 'express';
+import signIn from '../controllers/signin';
 
 const router = express();
 
-router.get('/signin', (req, res, next) => {
-    res.status(200).json({message: 'Please sign in'});
-});
+router.post('/signin', signIn);
 
 export default router;
