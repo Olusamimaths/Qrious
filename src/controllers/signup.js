@@ -2,27 +2,22 @@ import bcrypt from 'bcrypt';
 import validate from '../helper/signup.validator';
 import pool from '../models/db';
 
-// // joi schema
-// const schema = Joi.objectt().keys({
-
-// })
-
 const signUp = (req, res, next) => {
   const { username, password } = req.body;
+  // validate the input
   const result = validate(username, password);
 
   if (!result.error) {
     pool
       .query(`SELECT * FROM USERS where username = '${username}';`)
       .then((r) => {
-      // check if mail exists before signing in
+      // check if username exists before signing in
         if (r.rows[0]) {
           return res.status(409).json({
             status: 409,
-            message: 'Error Signing up. Username Already Exists',
+            error: 'Error Signing up. Username Already Exists',
           });
         }
-
         // register the new user
         // first hash the password
         bcrypt
@@ -45,7 +40,7 @@ const signUp = (req, res, next) => {
           });
       })
       .catch(e => console.log('unique user check error', e.stack));
-  } else {
+  } else { // validation error
     return res.status(500).json({
       status: 500,
       error: result.error.details.map(detail => detail.message),
