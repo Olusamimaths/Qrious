@@ -1,4 +1,5 @@
 import bcrypt from 'bcrypt';
+import jwt from 'jsonwebtoken';
 import pool from '../models/db';
 import validate from '../helper/signup.validator';
 
@@ -37,9 +38,16 @@ const signIn = (req, res, next) => {
 
           // comparision passes, log user in
           if (compareRes) {
+            // create a login token
+            const token = jwt.sign({
+              username,
+              loggedIn: Date.now()
+            }, process.env.JWT_KEY, { expiresIn: '24h' });
+
             return res.status(200).json({
               status: 200,
               message: 'Successfully logged in!',
+              token
             });
           }
         });

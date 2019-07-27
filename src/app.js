@@ -3,12 +3,11 @@ import dotenv from 'dotenv';
 import bodyParser from 'body-parser';
 import db from './models/db';
 
-dotenv.config()
-
 // importing routes
 import indexRoute from './routes/index';
-import signupRoute from './routes/signup';
-import signinRoute from './routes/signin';
+import userRoute from './routes/user';
+
+dotenv.config();
 
 // initialize the app
 const app = express();
@@ -19,8 +18,7 @@ app.use(bodyParser.json());
 
 // mount the routes
 app.use('/api/v1/', indexRoute);
-app.use('/api/v1/', signupRoute);
-app.use('/api/v1/', signinRoute);
+app.use('/api/v1/', userRoute);
 
 // handling errors
 // create error
@@ -29,6 +27,7 @@ app.use((req, res, next) => {
   error.status = 404;
   next(error);
 });
+
 // send the error
 app.use((error, req, res, next) => {
   res.status(error.status || 500);

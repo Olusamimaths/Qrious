@@ -1,4 +1,5 @@
 import bcrypt from 'bcrypt';
+import jwt from 'jsonwebtoken';
 import validate from '../helper/signup.validator';
 import pool from '../models/db';
 
@@ -28,12 +29,22 @@ const signUp = (req, res, next) => {
                 error: err,
               });
             } else {
-              const query = `INSERT INTO users (username, password, registered) VALUES ('${username}', '${hash}', NOW());`;
+              const query = `INSERT INTO users (username, password, registered) VALUES ('${username}', '${hash}', NOW()) RETURNING *;`;
               // run the query
               pool
                 .query(query)
                 .then((r) => {
-                  res.status(200).json({ message: 'Successfully created a new account' });
+                  // create a sign up token
+                  const token = jwt.sign({
+                    id: r.rows[0].id,
+                    username: r.rows[0].username,
+                  }, process.env.JWT_KEY, { expiresIn: process.env.JWT_EXPIRES });
+
+                  res.status(200).json({
+                    status: 200,
+                    message: 'Successfully created a new account',
+                    token,
+                  });
                 })
                 .catch(e => console.log('insertion error', e.stack));
             }

@@ -18,15 +18,20 @@ const createUserTable = `CREATE TABLE users (id SERIAL PRIMARY KEY NOT NULL,
   )`;
 
 const createQuestionTable = `CREATE TABLE questions (id SERIAL PRIMARY KEY NOT NULL,
+    question varchar(250) NOT NULL,
     placedBy varchar(30) NOT NULL,
-    timePlaced TIMESTAMP
-    )`;
+    meantFor varchar(30) NOT NULL, 
+    timePlaced TIMESTAMP,
+    reply varchar,
+    answered boolean NOT NULL
+    )
+    `;
 const runQuery = (query) => {
   pool.connect()
     .then(client => client.query(query)
       .then((res) => {
         client.release();
-        console.log('Successfully ran query');
+        console.log('Successfully ran query: ' + query);
       })
       .catch((e) => {
         client.release();
@@ -39,7 +44,8 @@ pool.connect()
   .catch(e => console.log(e.stack));
 
 export default pool;
-// runQuery(
-//   `${createQuestionTable};
-//   `
-// )
+
+runQuery(
+  `DROP TABLE IF EXISTS questions;${createQuestionTable};
+  `
+)

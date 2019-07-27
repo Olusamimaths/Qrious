@@ -1,6 +1,7 @@
 import dotenv from 'dotenv';
 
 dotenv.config();
+
 function configuration(NODE_ENV) {
   if (NODE_ENV === 'test') {
     return {

@@ -5,6 +5,8 @@ const schema = Joi.object().keys({
   password: Joi.string().regex(/^[a-zA-Z0-9]{3,30}$/).required(),
 });
 // joi schema
-const validate = (username, password) => Joi.validate({ username, password }, schema, {abortEarly: false});
+const validate = (username, password) => Joi.validate(
+    { username, password }, schema, {abortEarly: false}
+  );
 
 export default validate;
