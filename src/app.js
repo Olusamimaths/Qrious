@@ -4,8 +4,8 @@ import bodyParser from 'body-parser';
 import db from './models/db';
 
 // importing routes
-import indexRoute from './routes/index';
-import userRoute from './routes/user';
+import indexRoute from './routes/index.route';
+import userRoute from './routes/user.route';
 
 dotenv.config();
 

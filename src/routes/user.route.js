@@ -14,6 +14,6 @@ router.post('/signup', signUp);
 
 router.post('/ask', ask);
 
-router.post('/reply/id?=questionId', reply)
+router.post('/reply/:id', reply)
 
 export default router;
