@@ -19,6 +19,7 @@ async function reply(req, res, next) {
   if (!result.error) {
     const query = `UPDATE questions SET reply = '${answer}', answered = true WHERE id = ${questionId} AND meantfor = ${userId} RETURNING *;`;
     try {
+      
       const queryResult = await pool.query(query);
 
       if (queryResult.rows[0]) {
@@ -27,11 +28,11 @@ async function reply(req, res, next) {
           message: 'Successfully answered the question',
         });
       }
+
       return res.status(404).json({
         status: 404,
         message: 'Question not found for this user',
       });
-
 
     } catch (error) {
       return res.status(500).json({
