@@ -1,5 +1,5 @@
 /**
- * This modulte creates a 'post' ( question )
+ * This module creates a 'post' ( question )
  * required: content of question, who is placing the question, who it is meant for
  */
 import validate from '../helper/ask.validator';
@@ -19,7 +19,7 @@ const ask = (req, res, next) => {
       .then((r) => {
         if (r.rows[0]) {
           // User exist, do create the question for him
-          const query = `INSERT INTO questions (question, placedBy, meantFor, timePlaced, answered) VALUES ('${question}', '${placedBy}', '${meantFor}', NOW(), 'false') RETURNING *`;
+          const query = `INSERT INTO questions (question, placedBy, meantFor, timePlaced, answered) VALUES ('${question}', '${placedBy}', '${r.rows[0].id}', NOW(), 'false') RETURNING *`;
           pool
             .query(query)
             .then(r => res.status(200).json({

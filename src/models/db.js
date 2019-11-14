@@ -20,7 +20,7 @@ const createUserTable = `CREATE TABLE users (id SERIAL PRIMARY KEY NOT NULL,
 const createQuestionTable = `CREATE TABLE questions (id SERIAL PRIMARY KEY NOT NULL,
     question varchar(250) NOT NULL,
     placedBy varchar(30) NOT NULL,
-    meantFor varchar(30) NOT NULL, 
+    meantFor int NOT NULL, 
     timePlaced TIMESTAMP,
     reply varchar,
     answered boolean NOT NULL
