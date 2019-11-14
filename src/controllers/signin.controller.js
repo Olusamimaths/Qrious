@@ -40,6 +40,7 @@ async function signIn(req, res, next) {
           // create a login token
           const token = jwt.sign({
             username,
+            userId: queryResult.rows[0].id,
             loggedIn: Date.now(),
           }, process.env.JWT_KEY, { expiresIn: '24h' });
 
@@ -61,12 +62,6 @@ async function signIn(req, res, next) {
       error: result.error.details.map(detail => detail.message),
     });
   }
-
-  //   return res.status(500).json({
-  //     status: 500,
-  //     message: 'Internal Server Error, please report this',
-  //   });
-
 }
 
 export default signIn;

@@ -1,6 +1,7 @@
 /**
  * This module creates a 'post' ( question )
  * required: content of question, who is placing the question, who it is meant for
+ * Requires no authentication
  */
 import validate from '../helper/ask.validator';
 import pool from '../models/db';

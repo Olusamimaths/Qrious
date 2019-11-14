@@ -36,7 +36,7 @@ const signUp = (req, res, next) => {
                 .then((r) => {
                   // create a sign up token
                   const token = jwt.sign({
-                    id: r.rows[0].id,
+                    userId: r.rows[0].id,
                     username: r.rows[0].username,
                   }, process.env.JWT_KEY, { expiresIn: process.env.JWT_EXPIRES });
 
