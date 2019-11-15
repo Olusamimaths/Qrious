@@ -7,10 +7,10 @@ import validate from '../helper/ask.validator';
 import pool from '../models/db';
 
 const ask = (req, res, next) => {
-  const { question, placedBy, meantFor } = req.body;
+  const { question, meantFor } = req.body;
 
   // validate the input
-  const result = validate(question, placedBy, meantFor);
+  const result = validate(question, meantFor);
 
   if (!result.error) {
     // do query stuff
@@ -20,14 +20,14 @@ const ask = (req, res, next) => {
       .then((r) => {
         if (r.rows[0]) {
           // User exist, do create the question for him
-          const query = `INSERT INTO questions (question, placedBy, meantFor, timePlaced, answered) VALUES ('${question}', '${placedBy}', '${r.rows[0].id}', NOW(), 'false') RETURNING *`;
+          const query = `INSERT INTO questions (question, placedBy, meantFor, timePlaced, answered) VALUES ('${question}', 'Anonymous', '${r.rows[0].id}', NOW(), 'false') RETURNING *`;
           pool
             .query(query)
             .then(r => res.status(200).json({
               message: 'Successfully created the question',
             }))
             .catch(e => res.status(500).json({
-              error: 'Could not create the new question' + e,
+              error: 'Could not create the new question: ' + e,
             }));
         } else {
           // User does not exist, return an error
