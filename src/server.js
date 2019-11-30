@@ -1,5 +1,10 @@
+import http from 'http';
 import app from './app';
 
 const port = process.env.PORT || 5000;
 
-app.listen(port, () => console.log(`App started on port ${port}`));
+const server = http.createServer(app);
+
+server.listen(port, () => console.log(`App started on this port: ${port}`));
+
+module.exports = server;

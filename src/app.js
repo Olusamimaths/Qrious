@@ -1,7 +1,6 @@
 import express from 'express';
 import dotenv from 'dotenv';
 import bodyParser from 'body-parser';
-import db from './models/db';
 
 // importing routes
 import indexRoute from './routes/index.route';
@@ -13,7 +12,7 @@ dotenv.config();
 const app = express();
 
 // setup body parser
-app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
 // mount the routes

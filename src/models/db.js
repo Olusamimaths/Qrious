@@ -8,7 +8,7 @@ const { connectionString } = config;
 const pool = new Pool({ connectionString });
 
 pool.on('connect', () => {
-  console.log('connected to the db');
+  //console.log('connected to the db');
 });
 
 const createUserTable = `CREATE TABLE users (id SERIAL PRIMARY KEY NOT NULL,

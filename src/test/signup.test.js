@@ -1,35 +1,56 @@
 import chai from 'chai';
 import chaiHttp from 'chai-http';
-const jwt = require('jsonwebtoken');
+import deleteUser from '../helper/deleteUser';
 
 const server = require('../server');
-console.log(server)
-//process.env.NODE_ENV = 'test';
 
 // // GENERATE ACCESS TOKEN
 // const payload = { username: 'adunni', password: 'fish' };
 // const secret = process.env.JWT_KEY;
 // const token = jwt.sign(payload, secret, { expiresIn: '1h' });
 
-var assert = require('assert');
 
 chai.use(chaiHttp);
-let expect = chai.expect;
+const { expect } = chai;
 
-describe('SIGNUP', () => {
-  it('Should sign a user up', (done) => {
-    chai.request(server)
-      .post('/api/v1/signup')
-      .send({
-        username: 'kudsi', password: '1234',
-      })
-      .end((err, res) => {
-        expect(res).to.have.status(200);
-        expect(res).to.be.an('object');
-        expect(res.body).to.have.property('status').equal(200);
-        expect(res.body).to.have.property('message').equal('Successfully created a new account');
-        expect(res.body).to.have.property('token');
-        done();
-      })
+
+describe('USERS SECTION', () => {
+
+  describe('REGISTER USER', () => {
+    it('Registers a new user', () => {
+      chai.request(server)
+        .post('/api/v1/signup')
+        .send({
+          username: 'whatishappeningBayi', password: 'whatever'
+        })
+        .end((err, res) => {
+          expect(err).to.be.null;
+          expect(res).to.have.status(200);
+          expect(res).to.be.an('object');
+          expect(res.body).to.have.property('status').equal(200);
+          expect(res.body).to.have.property('message').equal('Successfully created a new account');
+          expect(res.body).to.have.property('token');
+        });
+    });
+
+    it('Signs a user in', () => {
+      chai.request(server)
+        .post('/api/v1/signin')
+        .send({
+          username: 'whatishappeningBayi', password: 'whatever'
+        })
+        .end((err, res) => {
+          expect(err).to.be.null;
+          expect(res).to.have.status(200);
+          expect(res).to.be.an('object');
+          expect(res.body).to.have.property('status').equal(200);
+          expect(res.body).to.have.property('message').equal('Successfully logged in!');
+          expect(res.body).to.have.property('token');
+        });
+    });
   });
+
+
 });
+
+
