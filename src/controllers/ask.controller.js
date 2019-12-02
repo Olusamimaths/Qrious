@@ -24,6 +24,7 @@ const ask = (req, res, next) => {
           pool
             .query(query)
             .then(r => res.status(200).json({
+              status: 200,
               message: 'Successfully created the question',
             }))
             .catch(e => res.status(500).json({

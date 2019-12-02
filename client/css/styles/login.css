@@ -108,3 +108,10 @@ div.active {
         transform: translate(-50%, -50%) rotate(0deg);
     }
 }
+
+
+@media (max-width: 700px) {
+    .field-name, .field-email, .field-password, .field-finish {
+        width: 80%;
+    }
+}

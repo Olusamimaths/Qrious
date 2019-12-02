@@ -1,6 +1,6 @@
 
 const animateForm = () => {
-  const arrows = document.querySelectorAll('.fa-arrow-down');
+  const arrows = document.querySelectorAll('#arrow-next');
   arrows.forEach((arrow) => {
     arrow.addEventListener('click', () => {
       const input = arrow.previousElementSibling;
@@ -25,22 +25,21 @@ const animateForm = () => {
   });
 };
 
-const validate = (email) => {
-  const validation = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-  if (validation.test(email.value)) {
+const validate = (input) => {
+  if (input.value) {
     setColor('rgb(87, 189, 130)'); // success
     return true;
   }
 
   setColor('rgb(189, 87, 87)'); // failure
-  flash(document.querySelector('#report'));
   return false;
-
 };
 
-const flash = (element) => {
+const flash = (element, message, color) => {
+  element.style.color = color;
   element.classList.remove('hide');
   element.classList.add('show');
+  element.innerText = message
   setTimeout(() => {
     element.classList.add('hide');
     element.classList.remove('show');

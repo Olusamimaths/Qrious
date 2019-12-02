@@ -16,7 +16,7 @@ const signUp = (req, res, next) => {
         if (r.rows[0]) {
           return res.status(409).json({
             status: 409,
-            error: 'Error Signing up. Username Already Exists',
+            error: ['Username Already Exists'],
           });
         }
         // register the new user

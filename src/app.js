@@ -1,6 +1,7 @@
 import express from 'express';
 import dotenv from 'dotenv';
 import bodyParser from 'body-parser';
+import cors from 'cors';
 
 // importing routes
 import indexRoute from './routes/index.route';
@@ -10,9 +11,10 @@ dotenv.config();
 
 // initialize the app
 const app = express();
+app.use(cors());
 
 // setup body parser
-app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
 // mount the routes
