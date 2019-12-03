@@ -8,6 +8,7 @@ const checkAuth = (req, res, next) => {
     next();
   } catch (err) {
     return res.status(401).json({
+      status: 401,
       message: 'Authentication Failed',
     });
   }

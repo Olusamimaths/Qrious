@@ -52,7 +52,7 @@
 }
 
 #report {
-    position: absolute;
+    position: fixed;
     right: 10%;
     top: 10%;
     width: auto;
@@ -64,6 +64,7 @@
     border-radius: 3px;
     box-shadow: 4px 5px 11px 0px grey;
     transition: all 0.5s ease;
+    z-index: 2;
 }
 
 .field-name i, .field-email i, .field-password i, .field-finish i {

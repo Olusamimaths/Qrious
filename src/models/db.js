@@ -14,14 +14,14 @@ pool.on('connect', () => {
 const createUserTable = `CREATE TABLE users (id SERIAL PRIMARY KEY NOT NULL,
   username varchar(30) NOT NULL,
   password varchar NOT NULL,
-  registered TIMESTAMP
+  registered timestamptz
   )`;
 
 const createQuestionTable = `CREATE TABLE questions (id SERIAL PRIMARY KEY NOT NULL,
-    question varchar(250) NOT NULL,
+    question varchar NOT NULL,
     placedBy varchar(30) NOT NULL,
     meantFor int NOT NULL, 
-    timePlaced TIMESTAMP,
+    timePlaced timestamptz,
     reply varchar,
     answered boolean NOT NULL
     )

@@ -9,7 +9,7 @@ import pool from '../models/db';
 async function getQuestions(req, res, next) {
   const { userId } = req.userData;
 
-  const query = `SELECT * FROM questions WHERE meantfor = ${userId};`;
+  const query = `SELECT * FROM questions  WHERE meantfor = ${userId} ORDER BY timeplaced DESC;`;
 
   try {
     const queryResult = await pool.query(query);

@@ -11,8 +11,8 @@ window.onload = () => {
       body: JSON.stringify(data),
       headers: {
         Accept: 'application/json, text/plain, */*',
-        'Content-type': 'application/json'
-      }
+        'Content-type': 'application/json',
+      },
     })
       .then(res => res.json())
       .then((res) => {
@@ -20,8 +20,8 @@ window.onload = () => {
 
         if (error) {
           setColor('rgb(189, 87, 87)');
-          let string = ''
-          error.forEach(e => string +=`${e}\n`)
+          let string = '';
+          error.forEach(e => string += `${e}\n`);
           flash(document.querySelector('#report'), `${string}`, 'red');
 
         } else if (status === 200) {
@@ -33,7 +33,11 @@ window.onload = () => {
         }
 
       })
-      .catch(err => console.log('Error : ', err));
+      .catch((err) => {
+        flash(document.querySelector('#report'), 'Make sure you are connected to the internet!', 'red');
+        console.log('Error : ', err)
+        ; 
+});
   }
 
   signInArrow.addEventListener('click', (e) => {
@@ -42,4 +46,4 @@ window.onload = () => {
     signInUser(url);
   });
 }
-  ;
+;

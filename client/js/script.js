@@ -39,11 +39,11 @@ const flash = (element, message, color) => {
   element.style.color = color;
   element.classList.remove('hide');
   element.classList.add('show');
-  element.innerText = message
+  element.innerText = message;
   setTimeout(() => {
     element.classList.add('hide');
     element.classList.remove('show');
-  }, 2000);
+  }, 5000);
 };
 
 const nextSlide = (parent, nextField) => {
@@ -56,5 +56,10 @@ const nextSlide = (parent, nextField) => {
 const setColor = (color) => {
   document.body.style.backgroundColor = color;
 };
+
+function signOut() {
+  localStorage.removeItem('accessToken');
+  return location.href = 'signin.html';
+}
 
 animateForm();

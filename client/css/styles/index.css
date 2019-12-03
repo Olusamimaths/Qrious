@@ -40,11 +40,15 @@
     top: 0;
     left: 0;
     z-index: -1;
-    opacity: 0.3;
+    transition: all 0.5s;
+    opacity: 0.4;
 }
-
+#logo-container {
+    font-size: 2rem;
+}
 #logo-container, #jumbotron {
     padding: 1rem;
+    font-family: Courier, monospace;
 }
 #btn-get-started {
     margin-top: 1rem;
@@ -63,4 +67,80 @@
 #copy-footer {
     margin-top: 4rem;
     letter-spacing: 25px;
+}
+
+/* typed text */
+.text_1 {
+    animation: text1;
+}
+.text_2 {
+    animation: text2;
+}
+.text_1, .text_2 {
+    overflow: hidden;
+    white-space: nowrap;
+    display: inline-block;
+    position: relative;
+    animation-duration: 20s;
+    animation-timing-function: steps(25, end);
+    animation-iteration-count: infinite;
+}
+
+.text_1::after, .text_2::after {
+    content: '|';
+    position: absolute;
+    right: 0;
+    color: orange;
+    animation: caret infinite steps(1, end) 0.75s;
+}
+
+@keyframes text1 {
+    0%, 50%, 100% {
+        width: 0;
+    }
+    10%, 40% {
+        width: 16.7em;
+    }
+}
+
+
+@keyframes text2 {
+    0%, 50%, 100% {
+        width: 0;
+    }
+    60%, 90% {
+        width: 15.4em;
+    }
+}
+
+@keyframes caret {
+    0%, 100% {
+      opacity: 0;
+    }
+    50% {
+      opacity: 1;
+    }
+  }
+
+  @media (max-width: 700px) {
+   .text_1, .text_2 {
+       font-size: 1rem;
+       font-weight: 800;
+   }
+   #copy-footer {
+       letter-spacing: 15px;
+   }
+   #logo-container {
+       padding: 0.3rem;
+   }
+
+   #btn-get-started {
+    margin-top: 0.8rem;
+    padding: 0.5rem;
+    cursor: pointer;
+    color: #000A3F;
+    text-transform: uppercase;
+    border: 2px solid #000A3F;
+    transition: all 0.5s;
+}
 }

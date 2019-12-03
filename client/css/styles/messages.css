@@ -18,6 +18,7 @@ body {
     flex-direction: column;
     padding: 3rem;
     justify-items: center;
+    min-height: 250px;
 }
 
 #greetings {
@@ -68,12 +69,6 @@ footer a {
     color: rgb(1, 65, 27);
 }
 
-@media (max-width: 700px) {
-    .message {
-        width: 90%;
-    }
-}
-
 /* send message  */
 #reply-body {
     height: 100vh;
@@ -108,8 +103,73 @@ footer a {
     cursor: pointer;
 }
 
+/* Right menu */
+#right-menu {
+    position: fixed;
+    top: 2rem;
+    left: 2rem;
+    width: 20%;
+    color: #fff;
+    padding: 0.3rem;
+    border-bottom: 2px solid orange;
+
+}
+
+#right-menu #sign-out{
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 1rem;
+}
+i {
+    font-size: 1.3rem;
+    cursor: pointer;
+}
+#sign-out p {
+    margin:0 1rem 1rem 0;
+    color: rgb(236, 255, 244);
+}
+#share-text {
+    color: rgb(236, 255, 244);
+}
+#share-link {
+    margin-top: 0.5rem;
+    font-family: 'Exo', sans-serif;
+}
+.fa-share {
+    color: rgb(251, 235, 6);
+}
+/* Tool tip for sharing */
 @media (max-width: 700px) {
+    .message {
+        width: 100%;
+    }
+
     #message-form {
         width: 90%;
+    }
+    #right-menu {
+        display: block;
+        border: 0;
+        background: rgb(87, 189, 130, 0.8);
+        width: 100%;
+        top: 0;
+        left: 0;
+        text-align: center;
+        padding-bottom: 0.1rem;
+    }
+    #sign-out {
+        margin: 1rem 3rem;
+    }
+    .message-header {
+        font-size: 0.8rem;
+    }
+    #share-link {
+        margin-top: 0.1rem;
+    }
+    #sign-out p {
+        margin:0 1rem;
+    }
+    #greetings {
+        margin-top: 11.6rem;
     }
 }

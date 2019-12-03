@@ -9,7 +9,7 @@ window.onload = () => {
 
   if (!meantFor) {
     greetingsDiv.textContent = 'You have an invalid link, create your own link?';
-    flash(document.querySelector('#report'), 'Error: invalid link', 'red;');
+    flash(document.querySelector('#report'), 'Error: invalid link', 'red');
     return;
   }
 
