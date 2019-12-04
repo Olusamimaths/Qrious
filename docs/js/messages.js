@@ -9,7 +9,7 @@ window.onload = () => {
     }
 
     document.querySelector('#share-link').value = `Send me an anonymous message, I'm not gonna know who sent it!
-    http://127.0.0.1:5500/user?=${localStorage.getItem('username')}
+    https://olusamimaths.github.io/Qrious/ask.html?user=${localStorage.getItem('username')}
     `;
 
     fetch(url, {
