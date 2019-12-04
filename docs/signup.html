@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="css/fonawesome/css/all.css">
+    <link rel="stylesheet" href="css/styles/login.css">
+    <title>Sign Up</title>
+</head>
+
+<body id="signup-body">
+        <div id="report" class="hide">Error. Invalid details</div>
+    <div id="header">
+        <h1>Sign up</h1>
+        <p>Already have an account? <a href="signin.html">Sign in</a></p>
+    </div>
+    <div class="field-name">
+        <i class="fas fa-user"></i>
+        <input type="text" placeholder="Username" id="signUpUsername" name="signUpUsername"  required>
+        <i class="fas fa-arrow-down" id="arrow-next"></i>
+    </div>
+
+    <div class="field-password inactive">
+        <i class="fas fa-key"></i>
+        <input type="password" placeholder="Password" id="signUpPassword" name="signUpPassword" required>
+        <i class="fas fa-arrow-down" id="submit-arrow"></i>
+    </div>
+
+    <div class="field-finish inactive">
+        <i class="fas fa-heart"></i>
+        <p>Thank You!</p>
+        <i class="fas fa-heart"></i>
+    </div>
+
+</body>
+
+<script src="js/script.js"></script>
+<script src="js/signup.js"></script>
+
+</html>

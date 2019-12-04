@@ -1,0 +1,118 @@
+
+#login-body {
+    height: 100vh;
+    display: flex;
+    background-color: rgb(87, 189, 130);
+    transition: background 0.5s ease;
+    position: relative;
+}
+
+#signup-body {
+    height: 100vh;
+    display: flex;
+    transition: background 0.5s ease;
+    position: relative;
+    background-color: rgb(49, 1, 45);
+}
+
+.field-name, .field-email, .field-password, .field-finish {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: white;
+    height: 50px;
+    width: 400px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-radius: 5px;
+    transition: all 0.5s ease;
+}
+
+#header {
+    width: 100%;
+    text-align: center;
+    position: relative;
+    top: 33%;
+    color: #fff;
+}
+
+#header h1 {
+    text-transform: uppercase;
+    font-family: 'Exo', sans-serif; 
+    color: #ffffff;
+    margin: 0;
+    padding-bottom: 0;
+}
+
+#header a {
+    color: #ffffff;
+    font-style: italic;
+}
+
+#report {
+    position: fixed;
+    right: 10%;
+    top: 10%;
+    width: auto;
+    height: auto;
+    background-color: #ffffffca;
+    padding: 0.7rem;
+    color: black;
+    font-size: 0.9rem;
+    border-radius: 3px;
+    box-shadow: 4px 5px 11px 0px grey;
+    transition: all 0.5s ease;
+    z-index: 2;
+}
+
+.field-name i, .field-email i, .field-password i, .field-finish i {
+    padding: 10px;
+    cursor: pointer;
+}
+
+.field-name input, .field-email input, .field-password input {
+    background: none;
+    border:none;
+    flex: 1;
+    height: 100%;
+    outline: none;
+}
+div.inactive {
+    opacity: 0;
+    pointer-events: none;
+    transform: translate(-50%, 50%);
+}
+
+div.active {
+    opacity: 1;
+    pointer-events: all;
+    transform: translate(-50%, -50%);
+}
+
+.hide {
+    opacity: 0;
+}
+.show {
+    opacity: 1;
+}
+
+@keyframes shake {
+    0% {
+        transform: translate(-50%, -50%) rotate(0deg);
+    }
+    50% {
+        transform: translate(-50%, -50%) rotate(10deg);
+    }
+    100% {
+        transform: translate(-50%, -50%) rotate(0deg);
+    }
+}
+
+
+@media (max-width: 700px) {
+    .field-name, .field-email, .field-password, .field-finish {
+        width: 80%;
+    }
+}

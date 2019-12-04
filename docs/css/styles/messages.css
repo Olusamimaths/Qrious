@@ -1,0 +1,175 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+}
+
+#messages {
+    width: 100%;
+    height: 100%;
+    background-color: rgb(87, 189, 130);
+    display: flex;
+    flex-direction: column;
+    padding: 3rem;
+    justify-items: center;
+    min-height: 250px;
+}
+
+#greetings {
+    margin: 1rem auto;
+    font-family: 'Exo', sans-serif; 
+    color: rgb(236, 255, 244);
+}
+
+.message {
+    width: 50%;
+    height: auto;
+    margin: 1rem auto;
+    text-align: justify;
+    padding: 0.7rem;
+    background: white;
+    border-radius: 0.4rem;
+    color: rgb(1, 65, 27);
+}
+
+.message-header {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 0.8rem;
+    border-bottom: 1px solid rgb(87, 189, 130, 0.7);
+}
+.message-text {
+    margin-bottom: 0.3rem;
+}
+.btn {
+    width: 100%;
+    background: rgb(87, 189, 130, 0.8);
+    border: 0;
+    padding: 0.4rem;
+    cursor: pointer;
+    color: #ffffff;
+}
+.btn:hover {
+    background: rgb(87, 189, 130);
+}
+footer {
+    display: block;
+    text-align: center;
+    padding: 1rem;
+    color: rgb(87, 189, 130) ;
+    background: #ffffff;
+}
+footer a {
+    color: rgb(1, 65, 27);
+}
+
+/* send message  */
+#reply-body {
+    height: 100vh;
+}
+#message-form {
+    width: 40%;
+    height: auto;
+    margin: 1rem auto;
+    padding: 0.5rem;
+    background: white;
+    border-radius: 0.4rem;
+    color: rgb(1, 65, 27);
+}
+
+#message-form textarea {
+    width: 100%;
+    min-height: 200px;
+    text-align: justify;
+    padding: 0.5rem;
+    border: 1px solid rgb(87, 189, 130);
+}
+.pull-right {
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+}
+#btn-reply {
+    padding: 0.46rem;
+    background: rgb(87, 189, 130);
+    border: 0;
+    border-radius: 0.2rem;
+    cursor: pointer;
+}
+
+/* Right menu */
+#right-menu {
+    position: fixed;
+    top: 2rem;
+    left: 2rem;
+    width: 20%;
+    color: #fff;
+    padding: 0.3rem;
+    border-bottom: 2px solid orange;
+
+}
+
+#right-menu #sign-out{
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 1rem;
+}
+i {
+    font-size: 1.3rem;
+    cursor: pointer;
+}
+#sign-out p {
+    margin:0 1rem 1rem 0;
+    color: rgb(236, 255, 244);
+}
+#share-text {
+    color: rgb(236, 255, 244);
+}
+#share-link {
+    margin-top: 0.5rem;
+    font-family: 'Exo', sans-serif;
+}
+.fa-share {
+    color: rgb(251, 235, 6);
+}
+/* Tool tip for sharing */
+@media (max-width: 700px) {
+    .message {
+        width: 100%;
+    }
+
+    #message-form {
+        width: 90%;
+    }
+    #right-menu {
+        display: block;
+        border: 0;
+        background: rgb(87, 189, 130, 0.8);
+        width: 100%;
+        top: 0;
+        left: 0;
+        text-align: center;
+        padding-bottom: 0.1rem;
+    }
+    #sign-out {
+        margin: 1rem 3rem;
+    }
+    .message-header {
+        font-size: 0.8rem;
+    }
+    #share-link {
+        margin-top: 0.1rem;
+    }
+    #sign-out p {
+        margin:0 1rem;
+    }
+    #greetings {
+        margin-top: 11.6rem;
+    }
+}
