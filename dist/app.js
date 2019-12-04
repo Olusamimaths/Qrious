@@ -36,7 +36,8 @@ let corsOptions = {
 
 }; // Then pass them to cors:
 
-app.use((0, _cors.default)(corsOptions)); // setup body parser
+app.use((0, _cors.default)(corsOptions));
+app.options('*', (0, _cors.default)()); // setup body parser
 
 app.use(_bodyParser.default.urlencoded({
   extended: false
