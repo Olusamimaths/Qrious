@@ -18,7 +18,7 @@ body {
     flex-direction: column;
     padding: 3rem;
     justify-items: center;
-    min-height: 250px;
+    min-height: 300px;
 }
 
 #greetings {
@@ -169,7 +169,7 @@ i {
     #sign-out p {
         margin:0 1rem;
     }
-    #greetings {
+    .shifted {
         margin-top: 11.6rem;
     }
 }
