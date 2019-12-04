@@ -12,6 +12,7 @@ window.onload = () => {
       headers: {
         Accept: 'application/json, text/plain, */*',
         'Content-type': 'application/json',
+        credentials: 'include',
       },
     })
       .then(res => res.json())
@@ -21,7 +22,7 @@ window.onload = () => {
         if (error) {
           setColor('rgb(189, 87, 87)');
           let string = '';
-          console.log(error)
+          console.log(error);
           error.forEach(e => string += `${e}\n`);
           flash(document.querySelector('#report'), `${string}`, 'red');
 
@@ -37,13 +38,13 @@ window.onload = () => {
       .catch((err) => {
         flash(document.querySelector('#report'), 'Make sure you are connected to the internet!', 'red');
         console.log('Error : ', err)
-        ; 
-});
+        ;
+      });
   }
 
   signInArrow.addEventListener('click', (e) => {
     e.preventDefault();
-    const url = 'https://qrious-me.herokuapp.com/api/v1/signin'
+    const url = 'https://qrious-me.herokuapp.com/api/v1/signin';
     signInUser(url);
   });
 }
