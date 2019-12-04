@@ -14,6 +14,7 @@ window.onload = () => {
 
     fetch(url, {
       method: 'GET',
+      credentials: 'include',
       headers: {
         Accept: 'application/json, text/plain, */*',
         'Content-type': 'application/json',

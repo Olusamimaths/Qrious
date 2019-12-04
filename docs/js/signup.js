@@ -9,6 +9,7 @@ window.onload = () => {
     fetch(url, {
       method: 'POST',
       body: JSON.stringify(data),
+      credentials: 'include',
       headers: {
         Accept: 'application/json, text/plain, */*',
         'Content-type': 'application/json',
