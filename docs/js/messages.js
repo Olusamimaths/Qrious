@@ -54,6 +54,7 @@ window.onload = () => {
 
             <p class="message-text">
                 Share this link and let your friends send you anonymous messages
+                https://olusamimaths.github.io/Qrious/ask.html?user=${localStorage.getItem('username')}
             </p>
         </aside>`;
         } else {
