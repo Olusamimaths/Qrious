@@ -1,32 +1,15 @@
-"use strict";
+import express from 'express'; // import the controllers
 
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports["default"] = void 0;
-
-var _express = _interopRequireDefault(require("express"));
-
-var _ask = _interopRequireDefault(require("../controllers/ask.controller"));
-
-var _signin = _interopRequireDefault(require("../controllers/signin.controller"));
-
-var _signup = _interopRequireDefault(require("../controllers/signup.controller"));
-
-var _reply = _interopRequireDefault(require("../controllers/reply.controller"));
-
-var _allQuestions = _interopRequireDefault(require("../controllers/allQuestions.controller"));
-
-var _auth = _interopRequireDefault(require("../middleware/auth"));
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
-
-// import the controllers
-var router = (0, _express["default"])();
-router.post('/signin', _signin["default"]);
-router.post('/signup', _signup["default"]);
-router.post('/ask', _ask["default"]);
-router.post('/reply/:questionId', _auth["default"], _reply["default"]);
-router.get('/questions', _auth["default"], _allQuestions["default"]);
-var _default = router;
-exports["default"] = _default;
+import ask from '../controllers/ask.controller';
+import signIn from '../controllers/signin.controller';
+import signUp from '../controllers/signup.controller';
+import reply from '../controllers/reply.controller';
+import getQuestions from '../controllers/allQuestions.controller';
+import checkAuth from '../middleware/auth';
+var router = express();
+router.post('/signin', signIn);
+router.post('/signup', signUp);
+router.post('/ask', ask);
+router.post('/reply/:questionId', checkAuth, reply);
+router.get('/questions', checkAuth, getQuestions);
+export default router;

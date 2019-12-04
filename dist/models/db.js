@@ -1,19 +1,8 @@
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports["default"] = void 0;
-
-var _pg = require("pg");
-
-var _config = _interopRequireDefault(require("../config/config"));
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
-
-var config = (0, _config["default"])(process.env.NODE_ENV);
+import { Pool } from 'pg';
+import configuration from '../config/config';
+var config = configuration(process.env.NODE_ENV);
 var connectionString = config.connectionString;
-var pool = new _pg.Pool({
+var pool = new Pool({
   connectionString: connectionString
 });
 pool.on('connect', function () {//console.log('connected to the db');
@@ -38,9 +27,7 @@ pool.connect().then(function () {
 })["catch"](function (e) {
   return console.log(e.stack);
 });
-var _default = pool; // runQuery(
-//   `DROP TABLE IF EXISTS questions;${createQuestionTable};
+export default pool; // runQuery(
+//   `DROP TABLE IF EXISTS questions;${createQuestionTable};${createUserTable};
 //   `
 // )
-
-exports["default"] = _default;

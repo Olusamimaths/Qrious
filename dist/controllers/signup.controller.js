@@ -1,29 +1,18 @@
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports["default"] = void 0;
-
-var _bcrypt = _interopRequireDefault(require("bcrypt"));
-
-var _jsonwebtoken = _interopRequireDefault(require("jsonwebtoken"));
-
-var _signup = _interopRequireDefault(require("../helper/signup.validator"));
-
-var _db = _interopRequireDefault(require("../models/db"));
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
+import "core-js/modules/es6.array.map";
+import bcrypt from 'bcrypt';
+import jwt from 'jsonwebtoken';
+import validate from '../helper/signup.validator';
+import pool from '../models/db';
 
 var signUp = function signUp(req, res, next) {
   var _req$body = req.body,
       username = _req$body.username,
       password = _req$body.password; // validate the input
 
-  var result = (0, _signup["default"])(username, password);
+  var result = validate(username, password);
 
   if (!result.error) {
-    _db["default"].query("SELECT * FROM USERS where username = '".concat(username, "';")).then(function (r) {
+    pool.query("SELECT * FROM USERS where username = '".concat(username, "';")).then(function (r) {
       // check if username exists before signing up
       if (r.rows[0]) {
         return res.status(409).json({
@@ -34,7 +23,7 @@ var signUp = function signUp(req, res, next) {
       // first hash the password
 
 
-      _bcrypt["default"].hash(password, 10, function (err, hash) {
+      bcrypt.hash(password, 10, function (err, hash) {
         if (err) {
           res.status(500).json({
             status: 500,
@@ -43,15 +32,14 @@ var signUp = function signUp(req, res, next) {
         } else {
           var query = "INSERT INTO users (username, password, registered) VALUES ('".concat(username, "', '").concat(hash, "', NOW()) RETURNING *;"); // run the query
 
-          _db["default"].query(query).then(function (r) {
+          pool.query(query).then(function (r) {
             // create a sign up token
-            var token = _jsonwebtoken["default"].sign({
+            var token = jwt.sign({
               userId: r.rows[0].id,
               username: r.rows[0].username
             }, process.env.JWT_KEY, {
               expiresIn: process.env.JWT_EXPIRES
             });
-
             res.status(200).json({
               status: 200,
               message: 'Successfully created a new account',
@@ -76,5 +64,4 @@ var signUp = function signUp(req, res, next) {
   }
 };
 
-var _default = signUp;
-exports["default"] = _default;
+export default signUp;

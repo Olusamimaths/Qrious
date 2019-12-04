@@ -1,19 +1,10 @@
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports["default"] = void 0;
-
-var _bcrypt = _interopRequireDefault(require("bcrypt"));
-
-var _jsonwebtoken = _interopRequireDefault(require("jsonwebtoken"));
-
-var _db = _interopRequireDefault(require("../models/db"));
-
-var _signup = _interopRequireDefault(require("../helper/signup.validator"));
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
+import "core-js/modules/es6.array.map";
+import "core-js/modules/es6.date.now";
+import "regenerator-runtime/runtime";
+import bcrypt from 'bcrypt';
+import jwt from 'jsonwebtoken';
+import pool from '../models/db';
+import validate from '../helper/signup.validator';
 
 function signIn(req, res, next) {
   var _req$body, username, password, result, query, hashed, queryResult;
@@ -23,7 +14,7 @@ function signIn(req, res, next) {
       switch (_context.prev = _context.next) {
         case 0:
           _req$body = req.body, username = _req$body.username, password = _req$body.password;
-          result = (0, _signup["default"])(username, password);
+          result = validate(username, password);
 
           if (result.error) {
             _context.next = 20;
@@ -34,7 +25,7 @@ function signIn(req, res, next) {
           hashed = '';
           _context.prev = 5;
           _context.next = 8;
-          return regeneratorRuntime.awrap(_db["default"].query(query));
+          return regeneratorRuntime.awrap(pool.query(query));
 
         case 8:
           queryResult = _context.sent;
@@ -56,7 +47,7 @@ function signIn(req, res, next) {
           } // comparing the password
 
 
-          _bcrypt["default"].compare(password, hashed, function (err, compareRes) {
+          bcrypt.compare(password, hashed, function (err, compareRes) {
             // if comparision fails
             if (!compareRes) {
               return res.status(409).json({
@@ -68,14 +59,13 @@ function signIn(req, res, next) {
 
             if (compareRes) {
               // create a login token
-              var token = _jsonwebtoken["default"].sign({
+              var token = jwt.sign({
                 username: username,
                 userId: queryResult.rows[0].id,
                 loggedIn: Date.now()
               }, process.env.JWT_KEY, {
                 expiresIn: '24h'
               });
-
               return res.status(200).json({
                 status: 200,
                 message: 'Successfully logged in!',
@@ -83,7 +73,6 @@ function signIn(req, res, next) {
               });
             }
           }); // .catch(e => console.log(e))
-
 
           _context.next = 18;
           break;
@@ -113,5 +102,4 @@ function signIn(req, res, next) {
   }, null, null, [[5, 15]]);
 }
 
-var _default = signIn;
-exports["default"] = _default;
+export default signIn;

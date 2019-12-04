@@ -1,22 +1,14 @@
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports["default"] = void 0;
-
-var _joi = _interopRequireDefault(require("joi"));
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
-
-var schema = _joi["default"].object().keys({
-  username: _joi["default"].string().alphanum().min(3).max(30).required(),
-  password: _joi["default"].string().regex(/^[a-zA-Z0-9]{3,30}$/).required()
+import "core-js/modules/web.dom.iterable";
+import "core-js/modules/es6.array.iterator";
+import "core-js/modules/es6.object.to-string";
+import Joi from 'joi';
+var schema = Joi.object().keys({
+  username: Joi.string().alphanum().min(3).max(30).required(),
+  password: Joi.string().regex(/^[a-zA-Z0-9]{3,30}$/).required()
 }); // joi schema
 
-
 var validate = function validate(username, password) {
-  return _joi["default"].validate({
+  return Joi.validate({
     username: username,
     password: password
   }, schema, {
@@ -24,5 +16,4 @@ var validate = function validate(username, password) {
   });
 };
 
-var _default = validate;
-exports["default"] = _default;
+export default validate;

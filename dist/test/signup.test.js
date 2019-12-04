@@ -1,12 +1,6 @@
-"use strict";
-
-var _chai = _interopRequireDefault(require("chai"));
-
-var _chaiHttp = _interopRequireDefault(require("chai-http"));
-
-var _deleteUser = _interopRequireDefault(require("../helper/deleteUser"));
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
+import chai from 'chai';
+import chaiHttp from 'chai-http';
+import deleteUser from '../helper/deleteUser';
 
 var server = require('../server'); // // GENERATE ACCESS TOKEN
 // const payload = { username: 'adunni', password: 'fish' };
@@ -14,13 +8,12 @@ var server = require('../server'); // // GENERATE ACCESS TOKEN
 // const token = jwt.sign(payload, secret, { expiresIn: '1h' });
 
 
-_chai["default"].use(_chaiHttp["default"]);
-
-var expect = _chai["default"].expect;
+chai.use(chaiHttp);
+var expect = chai.expect;
 describe('USERS SECTION', function () {
   describe('REGISTER USER', function () {
     it('Registers a new user', function () {
-      _chai["default"].request(server).post('/api/v1/signup').send({
+      chai.request(server).post('/api/v1/signup').send({
         username: 'whatishappeningBayi',
         password: 'whatever'
       }).end(function (err, res) {
@@ -33,7 +26,7 @@ describe('USERS SECTION', function () {
       });
     });
     it('Signs a user in', function () {
-      _chai["default"].request(server).post('/api/v1/signin').send({
+      chai.request(server).post('/api/v1/signin').send({
         username: 'whatishappeningBayi',
         password: 'whatever'
       }).end(function (err, res) {

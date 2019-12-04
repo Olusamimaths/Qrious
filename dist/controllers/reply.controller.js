@@ -1,17 +1,5 @@
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports["default"] = void 0;
-
-var _jsonwebtoken = _interopRequireDefault(require("jsonwebtoken"));
-
-var _reply = _interopRequireDefault(require("../helper/reply.validator"));
-
-var _db = _interopRequireDefault(require("../models/db"));
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
+import "core-js/modules/es6.array.map";
+import "regenerator-runtime/runtime";
 
 /**
  * This module replies a 'post' ( question )
@@ -19,6 +7,10 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "d
  * find the question and answer it
  * Users should only be able to reply to questions meant for them
  */
+import jwt from 'jsonwebtoken';
+import validate from '../helper/reply.validator';
+import pool from '../models/db';
+
 function reply(req, res, next) {
   var answer, questionId, userId, result, query, queryResult;
   return regeneratorRuntime.async(function reply$(_context) {
@@ -28,7 +20,7 @@ function reply(req, res, next) {
           answer = req.body.answer;
           questionId = req.params.questionId;
           userId = req.userData.userId;
-          result = (0, _reply["default"])(answer);
+          result = validate(answer);
 
           if (result.error) {
             _context.next = 20;
@@ -38,7 +30,7 @@ function reply(req, res, next) {
           query = "UPDATE questions SET reply = '".concat(answer, "', answered = true WHERE id = ").concat(questionId, " AND meantfor = ").concat(userId, " RETURNING *;");
           _context.prev = 6;
           _context.next = 9;
-          return regeneratorRuntime.awrap(_db["default"].query(query));
+          return regeneratorRuntime.awrap(pool.query(query));
 
         case 9:
           queryResult = _context.sent;
@@ -87,5 +79,4 @@ function reply(req, res, next) {
   }, null, null, [[6, 15]]);
 }
 
-var _default = reply;
-exports["default"] = _default;
+export default reply;

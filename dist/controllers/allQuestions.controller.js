@@ -1,21 +1,13 @@
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports["default"] = void 0;
-
-var _jsonwebtoken = _interopRequireDefault(require("jsonwebtoken"));
-
-var _reply = _interopRequireDefault(require("../helper/reply.validator"));
-
-var _db = _interopRequireDefault(require("../models/db"));
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
+import "core-js/modules/es6.array.map";
+import "regenerator-runtime/runtime";
 
 /**
  * This module gets all the questions meant for a given user
  */
+import jwt from 'jsonwebtoken';
+import validate from '../helper/reply.validator';
+import pool from '../models/db';
+
 function getQuestions(req, res, next) {
   var userId, query, queryResult, messages;
   return regeneratorRuntime.async(function getQuestions$(_context) {
@@ -26,7 +18,7 @@ function getQuestions(req, res, next) {
           query = "SELECT * FROM questions  WHERE meantfor = ".concat(userId, " ORDER BY timeplaced DESC;");
           _context.prev = 2;
           _context.next = 5;
-          return regeneratorRuntime.awrap(_db["default"].query(query));
+          return regeneratorRuntime.awrap(pool.query(query));
 
         case 5:
           queryResult = _context.sent;
@@ -72,5 +64,4 @@ function getQuestions(req, res, next) {
   }, null, null, [[2, 12]]);
 }
 
-var _default = getQuestions;
-exports["default"] = _default;
+export default getQuestions;

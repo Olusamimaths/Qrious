@@ -11,7 +11,20 @@ dotenv.config();
 
 // initialize the app
 const app = express();
-app.use(cors());
+
+let whitelist = ['https://olusamimaths.github.io/'];
+let corsOptions = {
+  origin (origin, callback) {
+    if (whitelist.indexOf(origin) !== -1) {
+      callback(null, true)
+    } else {
+      callback(new Error('Not allowed by CORS'))
+    }
+  },
+};
+
+// Then pass them to cors:
+app.use(cors(corsOptions));
 
 // setup body parser
 app.use(bodyParser.urlencoded({ extended: false }));

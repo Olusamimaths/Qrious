@@ -1,13 +1,5 @@
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports["default"] = void 0;
-
-var _db = _interopRequireDefault(require("../models/db"));
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
+import "regenerator-runtime/runtime";
+import pool from '../models/db';
 
 var deleteUser = function deleteUser(username) {
   var query, queryResult;
@@ -17,7 +9,7 @@ var deleteUser = function deleteUser(username) {
         case 0:
           query = "DELETE FROM users WHERE username = ".concat(username);
           _context.next = 3;
-          return regeneratorRuntime.awrap(_db["default"].query(query));
+          return regeneratorRuntime.awrap(pool.query(query));
 
         case 3:
           queryResult = _context.sent;
@@ -31,5 +23,4 @@ var deleteUser = function deleteUser(username) {
   });
 };
 
-var _default = deleteUser;
-exports["default"] = _default;
+export default deleteUser;

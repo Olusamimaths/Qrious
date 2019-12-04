@@ -1,38 +1,34 @@
-"use strict";
+import "core-js/modules/es6.array.index-of";
+import express from 'express';
+import dotenv from 'dotenv';
+import bodyParser from 'body-parser';
+import cors from 'cors'; // importing routes
 
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports["default"] = void 0;
+import indexRoute from './routes/index.route';
+import userRoute from './routes/user.route';
+dotenv.config(); // initialize the app
 
-var _express = _interopRequireDefault(require("express"));
+var app = express();
+var whitelist = ['https://olusamimaths.github.io/'];
+var corsOptions = {
+  origin: function origin(_origin, callback) {
+    if (whitelist.indexOf(_origin) !== -1) {
+      callback(null, true);
+    } else {
+      callback(new Error('Not allowed by CORS'));
+    }
+  }
+}; // Then pass them to cors:
 
-var _dotenv = _interopRequireDefault(require("dotenv"));
+app.use(cors(corsOptions)); // setup body parser
 
-var _bodyParser = _interopRequireDefault(require("body-parser"));
-
-var _cors = _interopRequireDefault(require("cors"));
-
-var _index = _interopRequireDefault(require("./routes/index.route"));
-
-var _user = _interopRequireDefault(require("./routes/user.route"));
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
-
-// importing routes
-_dotenv["default"].config(); // initialize the app
-
-
-var app = (0, _express["default"])();
-app.use((0, _cors["default"])()); // setup body parser
-
-app.use(_bodyParser["default"].urlencoded({
+app.use(bodyParser.urlencoded({
   extended: false
 }));
-app.use(_bodyParser["default"].json()); // mount the routes
+app.use(bodyParser.json()); // mount the routes
 
-app.use('/api/v1/', _index["default"]);
-app.use('/api/v1/', _user["default"]); // handling errors
+app.use('/api/v1/', indexRoute);
+app.use('/api/v1/', userRoute); // handling errors
 // create error
 
 app.use(function (req, res, next) {
@@ -53,5 +49,4 @@ app.use(function (req, res, next) {
   res.locals.user = res.user;
   next();
 });
-var _default = app;
-exports["default"] = _default;
+export default app;
