@@ -21,6 +21,7 @@ window.onload = () => {
         if (error) {
           setColor('rgb(189, 87, 87)');
           let string = '';
+          console.log(error)
           error.forEach(e => string += `${e}\n`);
           flash(document.querySelector('#report'), `${string}`, 'red');
 
@@ -42,7 +43,7 @@ window.onload = () => {
 
   signInArrow.addEventListener('click', (e) => {
     e.preventDefault();
-    const url = 'http://localhost:5000/api/v1/signin';
+    const url = 'https://qrious-me.herokuapp.com/api/v1/signin';
     signInUser(url);
   });
 }

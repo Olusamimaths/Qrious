@@ -41,7 +41,7 @@ window.onload = () => {
 
   signUpArrow.addEventListener('click', (e) => {
     e.preventDefault();
-    const url = 'http://localhost:5000/api/v1/signup';
+    const url = 'https://qrious-me.herokuapp.com/api/v1/signup';
     signUpUser(url);
   });
 }

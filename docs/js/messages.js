@@ -87,7 +87,7 @@ window.onload = () => {
   document.querySelector('.fa-sign-out-alt').addEventListener('click', logout)
   document.querySelector('.fa-share-square').addEventListener('click', copyLink)
 
-  getMessages('http://localhost:5000/api/v1/questions');
+  getMessages('https://qrious-me.herokuapp.com/api/v1/questions');
 
   
 }
