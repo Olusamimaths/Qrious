@@ -25,6 +25,7 @@ let corsOptions = {
 
 // Then pass them to cors:
 app.use(cors(corsOptions));
+app.options('*', cors())
 
 // setup body parser
 app.use(bodyParser.urlencoded({ extended: false }));
