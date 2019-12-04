@@ -1,10 +1,20 @@
-import "core-js/modules/es6.regexp.split";
-import jwt from 'jsonwebtoken';
+"use strict";
 
-var checkAuth = function checkAuth(req, res, next) {
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+
+var _jsonwebtoken = _interopRequireDefault(require("jsonwebtoken"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+const checkAuth = (req, res, next) => {
   try {
-    var token = req.headers.authorization.split(' ')[1];
-    var decoded = jwt.verify(token, process.env.JWT_KEY);
+    const token = req.headers.authorization.split(' ')[1];
+
+    const decoded = _jsonwebtoken.default.verify(token, process.env.JWT_KEY);
+
     req.userData = decoded;
     next();
   } catch (err) {
@@ -15,4 +25,5 @@ var checkAuth = function checkAuth(req, res, next) {
   }
 };
 
-export default checkAuth;
+var _default = checkAuth;
+exports.default = _default;

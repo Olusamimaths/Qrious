@@ -1,23 +1,32 @@
-import chai from 'chai';
-import chaiHttp from 'chai-http';
-import deleteUser from '../helper/deleteUser';
+"use strict";
 
-var server = require('../server'); // // GENERATE ACCESS TOKEN
+var _chai = _interopRequireDefault(require("chai"));
+
+var _chaiHttp = _interopRequireDefault(require("chai-http"));
+
+var _deleteUser = _interopRequireDefault(require("../helper/deleteUser"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+const server = require('../server'); // // GENERATE ACCESS TOKEN
 // const payload = { username: 'adunni', password: 'fish' };
 // const secret = process.env.JWT_KEY;
 // const token = jwt.sign(payload, secret, { expiresIn: '1h' });
 
 
-chai.use(chaiHttp);
-var expect = chai.expect;
-describe('USERS SECTION', function () {
-  describe('REGISTER USER', function () {
-    it('Registers a new user', function () {
-      chai.request(server).post('/api/v1/signup').send({
+_chai.default.use(_chaiHttp.default);
+
+const {
+  expect
+} = _chai.default;
+describe('USERS SECTION', () => {
+  describe('REGISTER USER', () => {
+    it('Registers a new user', () => {
+      _chai.default.request(server).post('/api/v1/signup').send({
         username: 'whatishappeningBayi',
         password: 'whatever'
-      }).end(function (err, res) {
-        expect(err).to.be["null"];
+      }).end((err, res) => {
+        expect(err).to.be.null;
         expect(res).to.have.status(200);
         expect(res).to.be.an('object');
         expect(res.body).to.have.property('status').equal(200);
@@ -25,12 +34,12 @@ describe('USERS SECTION', function () {
         expect(res.body).to.have.property('token');
       });
     });
-    it('Signs a user in', function () {
-      chai.request(server).post('/api/v1/signin').send({
+    it('Signs a user in', () => {
+      _chai.default.request(server).post('/api/v1/signin').send({
         username: 'whatishappeningBayi',
         password: 'whatever'
-      }).end(function (err, res) {
-        expect(err).to.be["null"];
+      }).end((err, res) => {
+        expect(err).to.be.null;
         expect(res).to.have.status(200);
         expect(res).to.be.an('object');
         expect(res.body).to.have.property('status').equal(200);

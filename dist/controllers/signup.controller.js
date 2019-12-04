@@ -1,18 +1,30 @@
-import "core-js/modules/es6.array.map";
-import bcrypt from 'bcrypt';
-import jwt from 'jsonwebtoken';
-import validate from '../helper/signup.validator';
-import pool from '../models/db';
+"use strict";
 
-var signUp = function signUp(req, res, next) {
-  var _req$body = req.body,
-      username = _req$body.username,
-      password = _req$body.password; // validate the input
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
 
-  var result = validate(username, password);
+var _bcrypt = _interopRequireDefault(require("bcrypt"));
+
+var _jsonwebtoken = _interopRequireDefault(require("jsonwebtoken"));
+
+var _signup = _interopRequireDefault(require("../helper/signup.validator"));
+
+var _db = _interopRequireDefault(require("../models/db"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+const signUp = (req, res, next) => {
+  const {
+    username,
+    password
+  } = req.body; // validate the input
+
+  const result = (0, _signup.default)(username, password);
 
   if (!result.error) {
-    pool.query("SELECT * FROM USERS where username = '".concat(username, "';")).then(function (r) {
+    _db.default.query(`SELECT * FROM USERS where username = '${username}';`).then(r => {
       // check if username exists before signing up
       if (r.rows[0]) {
         return res.status(409).json({
@@ -23,45 +35,41 @@ var signUp = function signUp(req, res, next) {
       // first hash the password
 
 
-      bcrypt.hash(password, 10, function (err, hash) {
+      _bcrypt.default.hash(password, 10, (err, hash) => {
         if (err) {
           res.status(500).json({
             status: 500,
             error: err
           });
         } else {
-          var query = "INSERT INTO users (username, password, registered) VALUES ('".concat(username, "', '").concat(hash, "', NOW()) RETURNING *;"); // run the query
+          const query = `INSERT INTO users (username, password, registered) VALUES ('${username}', '${hash}', NOW()) RETURNING *;`; // run the query
 
-          pool.query(query).then(function (r) {
+          _db.default.query(query).then(r => {
             // create a sign up token
-            var token = jwt.sign({
+            const token = _jsonwebtoken.default.sign({
               userId: r.rows[0].id,
               username: r.rows[0].username
             }, process.env.JWT_KEY, {
               expiresIn: process.env.JWT_EXPIRES
             });
+
             res.status(200).json({
               status: 200,
               message: 'Successfully created a new account',
-              token: token
+              token
             });
-          })["catch"](function (e) {
-            return console.log('insertion error', e.stack);
-          });
+          }).catch(e => console.log('insertion error', e.stack));
         }
       });
-    })["catch"](function (e) {
-      return console.log('unique user check error', e.stack);
-    });
+    }).catch(e => console.log('unique user check error', e.stack));
   } else {
     // validation error
     return res.status(500).json({
       status: 500,
-      error: result.error.details.map(function (detail) {
-        return detail.message;
-      })
+      error: result.error.details.map(detail => detail.message)
     });
   }
 };
 
-export default signUp;
+var _default = signUp;
+exports.default = _default;

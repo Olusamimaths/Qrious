@@ -1,5 +1,15 @@
-import dotenv from 'dotenv';
-dotenv.config();
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+
+var _dotenv = _interopRequireDefault(require("dotenv"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+_dotenv.default.config();
 
 function configuration(NODE_ENV) {
   if (NODE_ENV === 'test') {
@@ -23,7 +33,8 @@ function configuration(NODE_ENV) {
     };
   }
 
-  throw new Error("Environment configuration ".concat(NODE_ENV, " does not exist"));
+  throw new Error(`Environment configuration ${NODE_ENV} does not exist`);
 }
 
-export default configuration;
+var _default = configuration;
+exports.default = _default;

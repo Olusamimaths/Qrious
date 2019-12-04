@@ -1,17 +1,23 @@
-import "core-js/modules/web.dom.iterable";
-import "core-js/modules/es6.array.iterator";
-import "core-js/modules/es6.object.to-string";
-import Joi from 'joi';
-var schema = Joi.object().keys({
-  answer: Joi.string().min(5).required()
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+
+var _joi = _interopRequireDefault(require("joi"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+const schema = _joi.default.object().keys({
+  answer: _joi.default.string().min(5).required()
 });
 
-var validate = function validate(answer) {
-  return Joi.validate({
-    answer: answer
-  }, schema, {
-    abortEarly: false
-  });
-};
+const validate = answer => _joi.default.validate({
+  answer
+}, schema, {
+  abortEarly: false
+});
 
-export default validate;
+var _default = validate;
+exports.default = _default;

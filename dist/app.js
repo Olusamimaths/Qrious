@@ -1,43 +1,59 @@
-import "core-js/modules/es6.array.index-of";
-import express from 'express';
-import dotenv from 'dotenv';
-import bodyParser from 'body-parser';
-import cors from 'cors'; // importing routes
+"use strict";
 
-import indexRoute from './routes/index.route';
-import userRoute from './routes/user.route';
-dotenv.config(); // initialize the app
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
 
-var app = express();
-var whitelist = ['https://olusamimaths.github.io/'];
-var corsOptions = {
-  origin: function origin(_origin, callback) {
-    if (whitelist.indexOf(_origin) !== -1) {
+var _express = _interopRequireDefault(require("express"));
+
+var _dotenv = _interopRequireDefault(require("dotenv"));
+
+var _bodyParser = _interopRequireDefault(require("body-parser"));
+
+var _cors = _interopRequireDefault(require("cors"));
+
+var _index = _interopRequireDefault(require("./routes/index.route"));
+
+var _user = _interopRequireDefault(require("./routes/user.route"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+// importing routes
+_dotenv.default.config(); // initialize the app
+
+
+const app = (0, _express.default)();
+let whitelist = ['https://olusamimaths.github.io/'];
+let corsOptions = {
+  origin(origin, callback) {
+    if (whitelist.indexOf(origin) !== -1) {
       callback(null, true);
     } else {
       callback(new Error('Not allowed by CORS'));
     }
   }
+
 }; // Then pass them to cors:
 
-app.use(cors(corsOptions)); // setup body parser
+app.use((0, _cors.default)(corsOptions)); // setup body parser
 
-app.use(bodyParser.urlencoded({
+app.use(_bodyParser.default.urlencoded({
   extended: false
 }));
-app.use(bodyParser.json()); // mount the routes
+app.use(_bodyParser.default.json()); // mount the routes
 
-app.use('/api/v1/', indexRoute);
-app.use('/api/v1/', userRoute); // handling errors
+app.use('/api/v1/', _index.default);
+app.use('/api/v1/', _user.default); // handling errors
 // create error
 
-app.use(function (req, res, next) {
-  var error = new Error('Not found');
+app.use((req, res, next) => {
+  const error = new Error('Not found');
   error.status = 404;
   next(error);
 }); // send the error
 
-app.use(function (error, req, res, next) {
+app.use((error, req, res, next) => {
   res.status(error.status || 500);
   res.json({
     error: {
@@ -45,8 +61,9 @@ app.use(function (error, req, res, next) {
     }
   });
 });
-app.use(function (req, res, next) {
+app.use((req, res, next) => {
   res.locals.user = res.user;
   next();
 });
-export default app;
+var _default = app;
+exports.default = _default;
