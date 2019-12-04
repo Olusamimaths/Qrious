@@ -26,6 +26,7 @@ _dotenv.default.config(); // initialize the app
 const app = (0, _express.default)();
 app.use((req, res, next) => {
   res.header('Access-Control-Allow-Origin', '*');
+  res.header('Access-Control-Allow-Credentials', true);
   next();
 }); // setup body parser
 
