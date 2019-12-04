@@ -37,8 +37,9 @@ window.onload = () => {
                   <p class="message-text">
                   ${message.question}
                   </p>
-                  <button class="btn">Delete</button>
+                  
               </aside>`;
+              // <button class="btn">Delete</button>
             document.querySelector('#messages').innerHTML = `
             <h1 id="greetings">${localStorage.getItem('username') || 'friend'}, you have ${res.messages.length} ${res.messages.length === 1 ? 'message' : 'messages'}</h1>
             ${content}`;
