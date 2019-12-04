@@ -45,7 +45,7 @@ pool.connect()
 
 export default pool;
 
-runQuery(
-  `DROP TABLE IF EXISTS questions;${createQuestionTable};${createUserTable};
-  `
-)
+// runQuery(
+//   `DROP TABLE IF EXISTS questions;${createQuestionTable};${createUserTable};
+//   `
+// )
