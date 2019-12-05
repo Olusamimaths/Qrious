@@ -49,8 +49,8 @@ window.onload = () => {
             <h1 id="greetings">${localStorage.getItem('username') || 'friend'}, you have no messages yet</h1>
             <aside class="message">
             <div class="message-header">
-                <p></p>
-                <p></p>
+                <p class="message-date"></p>
+                <p class="message-time"></p>
             </div>
 
             <p class="message-text">

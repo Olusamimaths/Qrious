@@ -163,6 +163,10 @@ i {
     }
     .message-header {
         font-size: 0.8rem;
+        flex-direction: column;
+    }
+    .message-time {
+        text-align: right;
     }
     #share-link {
         margin-top: 0.1rem;
