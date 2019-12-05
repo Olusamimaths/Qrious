@@ -165,7 +165,7 @@ i {
         font-size: 0.8rem;
         flex-direction: column;
     }
-    .message-time {
+    p.time {
         text-align: right;
     }
     #share-link {

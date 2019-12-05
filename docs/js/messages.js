@@ -50,7 +50,7 @@ window.onload = () => {
             <aside class="message">
             <div class="message-header">
                 <p class="message-date"></p>
-                <p class="message-time"></p>
+                <p class="time"></p>
             </div>
 
             <p class="message-text">
