@@ -2,8 +2,6 @@
  * This module gets all the questions meant for a given user
  */
 
-import jwt from 'jsonwebtoken';
-import validate from '../helper/reply.validator';
 import pool from '../models/db';
 
 async function getQuestions(req, res, next) {
