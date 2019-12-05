@@ -1,4 +1,4 @@
-# Curious-Me
+# Qrious
 Anonymous Messenger: Allows users recieve anonymous messages.
 
 ## How it works
