@@ -6,7 +6,7 @@
   "scripts": {
     "test": "mocha --timeout 10000 --require @babel/register src/test/ --watch",
     "start": "node dist/server.js",
-    "dev": "nodemon --exec babel-node src/server.js --ignore client",
+    "dev": "nodemon --exec babel-node src/server.js --ignore docs",
     "build": "babel src --out-dir dist --copy-files",
     "createDb": "node dist/models/db.js"
   },

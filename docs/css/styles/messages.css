@@ -156,6 +156,7 @@ i {
         left: 0;
         text-align: center;
         padding-bottom: 0.1rem;
+        position: relative;
     }
     #sign-out {
         margin: 1rem 3rem;
@@ -169,7 +170,7 @@ i {
     #sign-out p {
         margin:0 1rem;
     }
-    .shifted {
-        margin-top: 11.6rem;
+    #messages {
+        padding-top: 0.2rem;
     }
 }

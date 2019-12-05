@@ -46,6 +46,6 @@ window.onload = () => {
 
   replyBtn.addEventListener('click', (e) => {
     e.preventDefault();
-    sendReply('https://qrious-me.herokuapp.com/api/v1/ask');
+    sendReply(`${apiPrefix}/ask`);
   });
 };

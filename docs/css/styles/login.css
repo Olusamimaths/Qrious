@@ -15,7 +15,7 @@
     background-color: rgb(49, 1, 45);
 }
 
-.field-name, .field-email, .field-password, .field-finish {
+.field-name, .field-email, .field-password {
     position: absolute;
     top: 50%;
     left: 50%;
@@ -114,5 +114,17 @@ div.active {
 @media (max-width: 700px) {
     .field-name, .field-email, .field-password, .field-finish {
         width: 80%;
+        position: relative;
+        top: 40%;
     }
+    #header {
+        margin: 0;
+    }
+    
+#login-body, #signup-body  {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
 }

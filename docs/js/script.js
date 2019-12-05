@@ -63,3 +63,5 @@ function signOut() {
 }
 
 animateForm();
+
+const apiPrefix = `https://qrious-me.herokuapp.com/api/v1/`;
