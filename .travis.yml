@@ -1,11 +1,6 @@
 language: node_js
 node_js:
  - "node"
-env:
- - NODE_ENV=test
- - JWT_KEY=sampleKey
- - JWT_EXPIRES='1h'
- - TEST_DB=postgres://postgres:27.0.0.1:5432/curious_test
 services:
   - postgresql
 before_script:
