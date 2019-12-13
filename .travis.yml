@@ -9,7 +9,6 @@ env:
 services:
   - postgresql
 before_script:
-  - psql -c 'DROP DATABASE curious_test;' -U postgres
   - psql -c 'create database curious_test;' -U postgres
   - npm run build
   - npm run createDb
