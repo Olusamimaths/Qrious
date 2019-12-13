@@ -89,6 +89,18 @@ describe('The message/question creation flow', () => {
     expect(response.body.messages[0]).toHaveProperty('reply');
   });
 
+  it('should not get questions for a user without access token', async () => {
+    const response = await supertest(app)
+      .get('/api/v1/questions')
+      .set({
+        Accept: 'application/json'
+      });
+
+    expect(response.status).toBe(401);
+    expect(response.body.messages).toBeUndefined();
+    expect(response.body.message).toBe('Authentication Failed');
+  });
+
   afterAll(async () => {
     await pool.query('DELETE FROM users;DELETE FROM questions;');
   });
