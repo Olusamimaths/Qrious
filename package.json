@@ -8,7 +8,7 @@
     "start": "node dist/server.js",
     "dev": "nodemon --exec babel-node src/server.js --ignore docs",
     "build": "babel src --out-dir dist --copy-files",
-    "createDb": "node dist/models/db.js"
+    "createDb": "node dist/models/createTables.js"
   },
   "repository": {
     "type": "git",
