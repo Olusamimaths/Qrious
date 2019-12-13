@@ -12,4 +12,5 @@ before_script:
   - psql -c 'create database curious_test;' -U postgres
   - npm run build
   - npm run createDb
-
+after_success:
+  - npm run test
