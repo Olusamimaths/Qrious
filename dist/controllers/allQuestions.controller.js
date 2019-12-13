@@ -5,10 +5,6 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = void 0;
 
-var _jsonwebtoken = _interopRequireDefault(require("jsonwebtoken"));
-
-var _reply = _interopRequireDefault(require("../helper/reply.validator"));
-
 var _db = _interopRequireDefault(require("../models/db"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
