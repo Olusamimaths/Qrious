@@ -51,4 +51,4 @@ app.use((req, res, next) => {
   next();
 });
 
-export default app;
+module.exports = app;

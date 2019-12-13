@@ -43,7 +43,8 @@ pool.connect()
   .then(() => console.log(`Pool connected successfully`))
   .catch(e => console.log(e.stack));
 
-export default pool;
+module.exports = pool;
+// export default pool;
 
 // runQuery(
 //   `DROP TABLE IF EXISTS questions;${createQuestionTable};${createUserTable};

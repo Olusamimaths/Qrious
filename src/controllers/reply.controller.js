@@ -5,7 +5,6 @@
  * Users should only be able to reply to questions meant for them
  */
 
-import jwt from 'jsonwebtoken';
 import validate from '../helper/reply.validator';
 import pool from '../models/db';
 
