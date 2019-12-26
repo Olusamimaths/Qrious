@@ -46,6 +46,7 @@ body {
 }
 .message-text {
     margin-bottom: 0.3rem;
+    box-sizing: border-box;
 }
 .btn {
     width: 100%;
