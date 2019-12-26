@@ -19,6 +19,7 @@ body {
     padding: 3rem;
     justify-items: center;
     min-height: 300px;
+    flex-wrap: wrap;
 }
 
 #greetings {
