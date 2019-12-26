@@ -48,6 +48,7 @@ body {
 .message-text {
     margin-bottom: 0.3rem;
     box-sizing: border-box;
+    overflow-wrap: break-word;
 }
 .btn {
     width: 100%;
