@@ -1,39 +1,42 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" href="css/fonawesome/css/all.css">
-    <link rel="stylesheet" href="css/styles/login.css">
-    <link rel="stylesheet" href="css/styles/messages.css">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <link rel="stylesheet" href="css/fonawesome/css/all.css" />
+    <link rel="stylesheet" href="css/styles/login.css" />
+    <link rel="stylesheet" href="css/styles/messages.css" />
     <title>Your Anonymous Messages</title>
-</head>
+  </head>
 
-<body>
+  <body>
+    <div hidden id="spinner"></div>
     <div id="report" class="hide"></div>
     <section id="right-menu">
-        <div id="sign-out">
-           <p>Logout</p> <i class="fas fa-sign-out-alt"></i>
-        </div>
-        <div id="sharing">
-            
-            <textarea id="share-link" rows="8" cols="20"></textarea>
-            <p id="share-link"></p><i class="fas fa-share-square"></i>
-            <p id="share-text">Click to copy this link and share it with your friends: </p>
-        </div>
+      <div id="sign-out">
+        <p>Logout</p>
+        <i class="fas fa-sign-out-alt"></i>
+      </div>
+      <div id="sharing">
+        <textarea id="share-link" rows="8" cols="20"></textarea>
+        <p id="share-link"></p>
+        <i class="fas fa-share-square"></i>
+        <p id="share-text">
+          Click to copy this link and share it with your friends:
+        </p>
+      </div>
     </section>
-    <section id="messages" class="shifted">
+    <section id="messages" class="shifted"></section>
+  </body>
 
-    </section>
-</body>
-
-<footer>
-    <p>&copy; <a href="https://twitter.com/solathecoder" target="__blanck">Olusola</a> . Made with <i
-            class="fas fa-heart"></i></p>
-</footer>
-<script src="js/script.js"></script>
-<script src="js/messages.js"></script>
-
+  <footer>
+    <p>
+      &copy;
+      <a href="https://twitter.com/solathecoder" target="__blanck">Olusola</a> .
+      Made with <i class="fas fa-heart"></i>
+    </p>
+  </footer>
+  <script src="js/script.js"></script>
+  <script src="js/messages.js"></script>
 </html>
