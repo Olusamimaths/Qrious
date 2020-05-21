@@ -28,6 +28,7 @@ window.onload = () => {
           let string = '';
           error.forEach(e => (string += `${e}\n`));
           flash(document.querySelector('#report'), `${string}`, 'red');
+          
         } else if (status === 200) {
           localStorage.setItem('accessToken', res.token);
           setColor('rgb(87, 189, 130)');
