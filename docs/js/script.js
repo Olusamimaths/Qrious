@@ -1,27 +1,64 @@
-
+const events = ['click', 'keydown'];
+const arrows = document.querySelectorAll('#arrow-next');
 const animateForm = () => {
-  const arrows = document.querySelectorAll('#arrow-next');
-  arrows.forEach((arrow) => {
-    arrow.addEventListener('click', () => {
-      const input = arrow.previousElementSibling;
-      const parent = arrow.parentElement;
-      const nextField = parent.nextElementSibling;
+  events.forEach((eventType) => {
+    // if eventType is click, add event listener to arrow
+    if (eventType === 'click') {
+      arrows.forEach((arrow) => {
+        arrow.addEventListener('click', () => {
+          const input = arrow.previousElementSibling;
+          const parent = arrow.parentElement;
+          const nextField = parent.nextElementSibling;
 
-      if (input.type === 'text' && validate(input)) {
-        nextSlide(parent, nextField);
-      } else if (input.type === 'email' && validateEmail(input)) {
-        nextSlide(parent, nextField);
-      } else if (input.type === 'password' && validate(input)) {
-        nextSlide(parent, nextField);
-      } else {
-        parent.style.animation = 'shake 0.5s ease';
-      }
+          if (input.type === 'text' && validate(input)) {
+            nextSlide(parent, nextField);
+          } else if (input.type === 'email' && validate(input)) {
+            nextSlide(parent, nextField);
+          } else if (input.type === 'password' && validate(input)) {
+            nextSlide(parent, nextField);
+          } else {
+            parent.style.animation = 'shake 0.5s ease';
+          }
 
-      // get rid of animation when it ends
-      parent.addEventListener('animationend', () => {
-        parent.style.animation = '';
+          // get rid of animation when it ends
+          parent.addEventListener('animationend', () => {
+            parent.style.animation = '';
+          });
+        });
       });
-    });
+    }
+    // if eventType is keydown, add event lister to document window
+    else if (eventType === 'keydown') {
+      let error = false;
+      document.addEventListener(eventType, (event) => {
+        if (event.keyCode === 13 || event.which === 13) {
+          arrows.forEach((arrow) => {
+            const input = arrow.previousElementSibling;
+            const parent = arrow.parentElement;
+            const nextField = parent.nextElementSibling;
+
+            if (input.type === 'text' && validate(input)) {
+              nextSlide(parent, nextField);
+            } else if (input.type === 'email' && validate(input)) {
+              nextSlide(parent, nextField);
+            } else if (input.type === 'password' && validate(input)) {
+              nextSlide(parent, nextField);
+            } else {
+              parent.style.animation = 'shake 0.5s ease';
+              error = true;
+            }
+
+            // get rid of animation when it ends
+            parent.addEventListener('animationend', () => {
+              parent.style.animation = '';
+            });
+          });
+
+          // const signInArrow = document.querySelector('#submit-arrow');
+          // signInArrow.setAttribute('visible', '')
+        }
+      });
+    }
   });
 };
 
@@ -33,11 +70,6 @@ const validate = (input) => {
 
   setColor('rgb(189, 87, 87)'); // failure
   return false;
-};
-
-const validateEmail = (email) => {
-  const re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-  return re.test(String(email).toLowerCase());
 };
 
 const flash = (element, message, color) => {
@@ -64,9 +96,10 @@ const setColor = (color) => {
 
 function signOut() {
   localStorage.removeItem('accessToken');
-  return location.href = 'signin.html';
+  return (location.href = 'signin.html');
 }
 
 animateForm();
+
 
 const apiPrefix = 'https://qrious-me.herokuapp.com/api/v1/';

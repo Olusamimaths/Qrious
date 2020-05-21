@@ -1,6 +1,6 @@
 window.onload = () => {
   const signInArrow = document.querySelector('#submit-arrow');
-  const spinner = document.getElementById("spinner");
+  const spinner = document.getElementById('spinner');
 
   function signInUser(url) {
     spinner.removeAttribute('hidden');
@@ -28,7 +28,6 @@ window.onload = () => {
           let string = '';
           error.forEach(e => (string += `${e}\n`));
           flash(document.querySelector('#report'), `${string}`, 'red');
-          
         } else if (status === 200) {
           localStorage.setItem('accessToken', res.token);
           setColor('rgb(87, 189, 130)');
@@ -51,9 +50,20 @@ window.onload = () => {
       });
   }
 
+
   signInArrow.addEventListener('click', (e) => {
     e.preventDefault();
     const url = `${apiPrefix}/signin`;
     signInUser(url);
   });
+
+
+  // document.addEventListener('keydown', (event) => {
+  //   console.log(signInArrow.hasAttribute('visible'))
+  //   if (!signInArrow.hasAttribute('visible')) return;
+  //   if (event.keyCode === 13 || event.which === 13) {
+  //     const url = `${apiPrefix}/signin`;
+  //     signInUser(url);
+  //   }
+  // });
 };
