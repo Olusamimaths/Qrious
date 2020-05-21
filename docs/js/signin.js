@@ -26,7 +26,6 @@ window.onload = () => {
         if (error) {
           setColor('rgb(189, 87, 87)');
           let string = '';
-          console.log(error);
           error.forEach(e => (string += `${e}\n`));
           flash(document.querySelector('#report'), `${string}`, 'red');
         } else if (status === 200) {

@@ -40,7 +40,7 @@ window.onload = () => {
       .catch((err) => {
         spinner.setAttribute('hidden', '');
         flash(document.querySelector('#report'), `Make sure you are connected to the internet!`, 'red');
-        console.log('Error : ', err) 
+        // console.log('Error : ', err) 
 ;});
   }
 
