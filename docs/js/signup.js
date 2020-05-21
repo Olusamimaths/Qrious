@@ -1,7 +1,9 @@
 window.onload = () => {
+  const spinner = document.getElementById("spinner");
   const signUpArrow = document.querySelector('#submit-arrow');
 
   function signUpUser(url) {
+    spinner.removeAttribute('hidden');
     const username = document.querySelector('#signUpUsername').value;
     const password = document.querySelector('#signUpPassword').value;
 
@@ -17,6 +19,7 @@ window.onload = () => {
     })
       .then(res => res.json())
       .then((res) => {
+        spinner.setAttribute('hidden', '');
         const { error, status } = res;
 
         if (error) {
@@ -35,6 +38,7 @@ window.onload = () => {
 
       })
       .catch((err) => {
+        spinner.setAttribute('hidden', '');
         flash(document.querySelector('#report'), `Make sure you are connected to the internet!`, 'red');
         console.log('Error : ', err) 
 ;});

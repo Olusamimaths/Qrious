@@ -1,6 +1,8 @@
 window.onload = () => {
+  const spinner = document.getElementById("spinner");
   // get the access token
   function getMessages(url) {
+    spinner.removeAttribute('hidden');
     const accessToken = localStorage.getItem('accessToken');
     if (!accessToken) {
       window.location.href = 'signin.html';
@@ -23,6 +25,7 @@ window.onload = () => {
     })
       .then(res => res.json())
       .then((res) => {
+        spinner.setAttribute('hidden', '');
         if (res.status === 200) {
           let content = '';
           flash(document.querySelector('#report'), 'Signed in', 'green');
@@ -65,6 +68,7 @@ window.onload = () => {
 
       })
       .catch((err) => {
+        spinner.setAttribute('hidden', '');
         flash(document.querySelector('#report'), 'Make sure you are connected to the internet!', 'red');
         console.log('Error : ', err)
         ; 

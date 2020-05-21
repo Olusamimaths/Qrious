@@ -1,34 +1,45 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" href="css/fonawesome/css/all.css">
-    <link rel="stylesheet" href="css/styles/login.css">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <link rel="stylesheet" href="css/fonawesome/css/all.css" />
+    <link rel="stylesheet" href="css/styles/login.css" />
     <title>Sign in</title>
-</head>
+  </head>
 
-<body id="login-body">
-        <div id="report" class="hide">Error. Invalid details</div>
+  <body id="login-body">
+    <div hidden id="spinner"></div>
+    <div id="report" class="hide">Error. Invalid details</div>
     <div id="header">
-        <h1>Sign in</h1>
-        <p>Don't have an account? <a href="signup.html">Sign up</a></p>
+      <h1>Sign in</h1>
+      <p>Don't have an account? <a href="signup.html">Sign up</a></p>
     </div>
     <div class="field-name">
-        <i class="fas fa-user"></i>
-        <input type="text" placeholder="Username" id="signInUsername" name="signInUsername" required>
-        <i class="fas fa-arrow-down" id="arrow-next"></i>
+      <i class="fas fa-user"></i>
+      <input
+        type="text"
+        placeholder="Username"
+        id="signInUsername"
+        name="signInUsername"
+        required
+      />
+      <i class="fas fa-arrow-down" id="arrow-next"></i>
     </div>
     <div class="field-password inactive">
-        <i class="fas fa-key"></i>
-        <input type="password" id="signInPassword" name="signInPassword" placeholder="Password" required>
-        <i class="fas fa-arrow-down" id="submit-arrow"></i>
+      <i class="fas fa-key"></i>
+      <input
+        type="password"
+        id="signInPassword"
+        name="signInPassword"
+        placeholder="Password"
+        required
+      />
+      <i class="fas fa-arrow-down" id="submit-arrow"></i>
     </div>
-    
-</body>
+  </body>
 
-<script src="js/script.js"></script>
-<script src="js/signin.js"></script>
+  <script src="js/script.js"></script>
+  <script src="js/signin.js"></script>
 </html>
