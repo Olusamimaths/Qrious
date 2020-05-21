@@ -31,6 +31,10 @@ const animateForm = () => {
     else if (eventType === 'keydown') {
       let error = false;
       document.addEventListener(eventType, (event) => {
+        if (event.isComposing || event.keyCode === 229) {
+          return;
+        }
+        
         if (event.keyCode === 13 || event.which === 13) {
           arrows.forEach((arrow) => {
             const input = arrow.previousElementSibling;
