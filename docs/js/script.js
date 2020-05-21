@@ -9,7 +9,7 @@ const animateForm = () => {
 
       if (input.type === 'text' && validate(input)) {
         nextSlide(parent, nextField);
-      } else if (input.type === 'email' && validate(input)) {
+      } else if (input.type === 'email' && validateEmail(input)) {
         nextSlide(parent, nextField);
       } else if (input.type === 'password' && validate(input)) {
         nextSlide(parent, nextField);
@@ -33,6 +33,11 @@ const validate = (input) => {
 
   setColor('rgb(189, 87, 87)'); // failure
   return false;
+};
+
+const validateEmail = (email) => {
+  const re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+  return re.test(String(email).toLowerCase());
 };
 
 const flash = (element, message, color) => {
@@ -64,4 +69,4 @@ function signOut() {
 
 animateForm();
 
-const apiPrefix = `https://qrious-me.herokuapp.com/api/v1/`;
+const apiPrefix = 'https://qrious-me.herokuapp.com/api/v1/';
