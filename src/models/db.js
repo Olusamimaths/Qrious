@@ -5,7 +5,7 @@ const config = configuration(process.env.NODE_ENV);
 
 const { connectionString } = config;
 
-const pool = new Pool({ connectionString });
+const pool = new Pool({ connectionString, ssl: true });
 
 pool.on('connect', () => {
   //console.log('connected to the db');
